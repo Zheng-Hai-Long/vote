@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vote.dao.ActionUserMapper" >
+  <resultMap id="BaseResultMap" type="com.vote.pojo.ActionUser" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="department" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sex" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mobile" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_name" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, password, department, real_name, sex, mobile, status, create_name, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from action_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from action_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.vote.pojo.ActionUser" >
+    insert into action_user (id, user_name, password, 
+      department, real_name, sex, 
+      mobile, status, create_name, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createName,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vote.pojo.ActionUser" >
+    insert into action_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createName != null" >
+        create_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vote.pojo.ActionUser" >
+    update action_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vote.pojo.ActionUser" >
+    update action_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_name = #{createName,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 用户登录  校验 -->
+  <select id="queryUser" parameterType="com.vote.pojo.ActionUser"
+          resultType="com.vote.pojo.ActionUser">
+    select
+    <include refid="Base_Column_List"/>
+    from action_user
+    where user_name = #{userName}
+    and password = #{password}
+  </select>
+
+  <!-- 用户信息   分页查询 -->
+  <select id="queryUserList" resultType="com.vote.pojo.ActionUser" parameterType="com.vote.pojo.vo.ActionUserVO">
+    select
+    <include refid="Base_Column_List"/>
+    from action_user where 1=1
+    <if test="userName != null"> and user_name like '%' #{userName} '%'  or real_name like '%' #{userName} '%' </if>
+    <if test="createname !=null and createname != 0"> and create_name=#{createname} </if>
+    order by id asc
+  </select>
+
+  <!-- 用户信息  加载修改页面 -->
+  <select id="userEdit" resultType="com.vote.pojo.ActionUser" parameterType="int">
+    select
+    <include refid="Base_Column_List"/>
+    from action_user where id = #{id}
+  </select>
+
+  <!-- 用户信息 修改 -->
+  <update id="userEditOk" parameterType="com.vote.pojo.ActionUser">
+    update action_user set
+    user_name = #{userName},
+    department = #{department},
+    real_name = #{realName},
+    sex = #{sex},
+    mobile = #{mobile}
+    where
+    id = #{id}
+  </update>
+
+  <!-- 用户信息  删除 -->
+  <delete id="userDelete"  parameterType="int">
+    delete  from action_user where id=#{id}
+  </delete>
+
+  <!-- 用户信息  添加 -->
+  <insert id="userAdd" parameterType="com.vote.pojo.ActionUser">
+    insert into action_user
+    (
+    user_name,
+    password,
+    department,
+    real_name,
+    sex,
+    mobile,
+    status,
+    create_name,
+    create_time
+    )
+    values
+    (
+    #{userName},
+    #{password},
+    #{department},
+    #{realName},
+    #{sex},
+    #{mobile},
+    #{status},
+    #{createname},
+    #{createtime}
+    )
+  </insert>
+  <!-- 分配用户__查找全部用户 sql -->
+  <select id="selectRoleUserList" parameterType="int" resultType="com.vote.pojo.ActionUser">
+    select
+    <include refid="Base_Column_List"/>
+    from action_user where 1=1
+    and create_name = #{createname} and status =1
+  </select>
+
+  <!-- 用户初始化密码 -->
+  <update id="userInit" parameterType="com.vote.pojo.ActionUser">
+    update action_user set
+    password = #{password}
+    where
+    id = #{id}
+  </update>
+
+  <!-- 用户修改状态 -->
+  <update id="userStatus" parameterType="com.vote.pojo.ActionUser">
+    update action_user set
+    status = #{status}
+    where
+    id = #{id}
+  </update>
+
+  <!-- 通过用户id查询 -->
+  <select id="queryById" parameterType="int" resultType="com.vote.pojo.ActionUser">
+    select
+    <include refid="Base_Column_List"/>
+    from action_user
+    where id=#{id}
+  </select>
+
+</mapper>

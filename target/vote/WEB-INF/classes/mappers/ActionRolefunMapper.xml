@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vote.dao.ActionRolefunMapper" >
+  <resultMap id="BaseResultMap" type="com.vote.pojo.ActionRolefun" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fun_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_id, fun_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from action_rolefun
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from action_rolefun
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.vote.pojo.ActionRolefun" >
+    insert into action_rolefun (id, role_id, fun_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{funId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vote.pojo.ActionRolefun" >
+    insert into action_rolefun
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="funId != null" >
+        fun_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="funId != null" >
+        #{funId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vote.pojo.ActionRolefun" >
+    update action_rolefun
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="funId != null" >
+        fun_id = #{funId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vote.pojo.ActionRolefun" >
+    update action_rolefun
+    set role_id = #{roleId,jdbcType=INTEGER},
+      fun_id = #{funId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 用户角色关联查询  sql -->
+  <select id="selectRoleFun" parameterType="com.vote.pojo.ActionRolefun" resultType="int">
+    select count(1) action_rolefun where role_id =#{roleId} and fun_id = #{funId}
+  </select>
+
+  <!-- 删除用户角色关联信息 -->
+  <delete id="funDelete"  parameterType="int">
+    delete  from action_rolefun where fun_id=#{id}
+  </delete>
+
+  <!-- 删除用户角色关联信息 -->
+  <delete id="roleFunDelete"  parameterType="int">
+    delete  from action_rolefun where role_id=#{id}
+  </delete>
+
+  <!-- 用户角色关联新增 sql -->
+  <insert id="roleFunAdd" parameterType="com.vote.pojo.ActionRolefun">
+    insert into action_rolefun
+    (
+    role_id,
+    fun_id
+    )
+    values
+    (
+    #{roleId},
+    #{funId}
+    )
+  </insert>
+
+</mapper>

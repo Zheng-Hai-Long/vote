@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vote.dao.ActionFunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.vote.pojo.ActionFunction" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fun_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="action" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="display_mode" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parent_fun" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="target" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fun_name, action, display_mode, parent_fun, code, rel, target
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from action_function
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from action_function
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.vote.pojo.ActionFunction" >
+    insert into action_function (id, fun_name, action, 
+      display_mode, parent_fun, code, 
+      rel, target)
+    values (#{id,jdbcType=INTEGER}, #{funName,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
+      #{displayMode,jdbcType=INTEGER}, #{parentFun,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{rel,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vote.pojo.ActionFunction" >
+    insert into action_function
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="funName != null" >
+        fun_name,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="displayMode != null" >
+        display_mode,
+      </if>
+      <if test="parentFun != null" >
+        parent_fun,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="rel != null" >
+        rel,
+      </if>
+      <if test="target != null" >
+        target,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="funName != null" >
+        #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="displayMode != null" >
+        #{displayMode,jdbcType=INTEGER},
+      </if>
+      <if test="parentFun != null" >
+        #{parentFun,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="rel != null" >
+        #{rel,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        #{target,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vote.pojo.ActionFunction" >
+    update action_function
+    <set >
+      <if test="funName != null" >
+        fun_name = #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="displayMode != null" >
+        display_mode = #{displayMode,jdbcType=INTEGER},
+      </if>
+      <if test="parentFun != null" >
+        parent_fun = #{parentFun,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="rel != null" >
+        rel = #{rel,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        target = #{target,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vote.pojo.ActionFunction" >
+    update action_function
+    set fun_name = #{funName,jdbcType=VARCHAR},
+      action = #{action,jdbcType=VARCHAR},
+      display_mode = #{displayMode,jdbcType=INTEGER},
+      parent_fun = #{parentFun,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      rel = #{rel,jdbcType=VARCHAR},
+      target = #{target,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryFunctionList" parameterType="com.vote.pojo.ActionFunction" resultType="com.vote.pojo.ActionFunction">
+    select
+    <include refid="Base_Column_List" />
+    from action_function
+    <where>
+      <if test="funName != null and funName != ''"> and fun_name  like '%${funName}%' </if>
+      <if test="action != null and action != ''"> and action  like '%${action}%' </if>
+    </where>
+    order by id asc
+  </select>
+
+  <!-- 获取单个信息父类 -->
+  <select id="functionEditParentFun" resultType="com.vote.pojo.ActionFunction" parameterType="int">
+    select
+    <include refid="Base_Column_List" />
+    from action_function f where f.id = #{id}
+  </select>
+
+  <!-- 获取单个详细信息 -->
+  <select id="functionEdit" resultType="com.vote.pojo.ActionFunction" parameterType="int">
+    select aa.*,af.fun_name as parent_name from action_function af,
+    (select * from action_function f where f.id = #{id}) as aa
+    where af.id = aa.parent_fun
+  </select>
+
+  <!-- 分配权限__查找全部权限 sql -->
+  <select id="selectRoleFunList" resultType="com.vote.pojo.ActionFunction">
+    select
+    <include refid="Base_Column_List" />
+    from action_function
+  </select>
+
+  <!-- 用户登录初始化菜单权限 带参数 -->
+  <select id="indexUserFunParam" resultType="com.vote.pojo.ActionFunction" parameterType="com.vote.pojo.ActionUser">
+    select f.* from action_function f , action_rolefun r, action_userrole u
+    <where>
+      f.id = r.fun_id
+      and r.role_id = u.role_id
+      and u.user_id = #{id}
+      and f.display_mode = '1'
+    </where>
+    order by f.id asc
+  </select>
+
+  <!-- 初始化菜单按钮权限 sql -->
+  <select id="functionListTo" resultType="com.vote.pojo.ActionFunction" parameterType="int">
+    select f.* from action_userrole ur,action_rolefun rf,action_function f
+    where ur.role_id = rf.role_id
+    and rf.fun_id = f.id
+    and ur.user_id = #{userId}
+    order by f.id asc
+  </select>
+
+</mapper>
