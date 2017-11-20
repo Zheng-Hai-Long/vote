@@ -169,7 +169,7 @@
     <include refid="Base_Column_List"/>
     from action_user where 1=1
     <if test="userName != null"> and user_name like '%' #{userName} '%'  or real_name like '%' #{userName} '%' </if>
-    <if test="createname !=null and createname != 0"> and create_name=#{createname} </if>
+    <if test="createName !=null and createName != 0"> and create_name=#{createName} </if>
     order by id asc
   </select>
 
@@ -220,8 +220,8 @@
     #{sex},
     #{mobile},
     #{status},
-    #{createname},
-    #{createtime}
+    #{createName},
+    #{createTime}
     )
   </insert>
   <!-- 分配用户__查找全部用户 sql -->
@@ -229,7 +229,7 @@
     select
     <include refid="Base_Column_List"/>
     from action_user where 1=1
-    and create_name = #{createname} and status =1
+    and create_name = #{createName} and status =1
   </select>
 
   <!-- 用户初始化密码 -->

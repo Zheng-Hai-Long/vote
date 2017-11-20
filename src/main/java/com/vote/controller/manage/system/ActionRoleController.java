@@ -237,8 +237,7 @@ public class ActionRoleController extends BaseController{
 			ActionUserrole aur = new ActionUserrole();
             aur.setId(tmp.getId());
             aur.setRoleId(roleId);
-			//TODO
-            int count = 0;//actionUserRoleService.selectUserRole(aur);
+            int count = actionUserRoleService.selectUserRole(aur);
 			if (count > 0) {
                 sb.append("<li><a checked=\"true\" tname=\"name\" tvalue=\"")
                     .append(tmp.getId())
@@ -303,8 +302,8 @@ public class ActionRoleController extends BaseController{
             ActionRolefun arf = new ActionRolefun();
             arf.setFunId(actionid);
             arf.setRoleId(roleId);
-			//TODO 查询该action是否已经和该角色存在对应关系
-            int count = 0;//actionRoleFunService.selectRoleFun(arf);
+			//查询该action是否已经和该角色存在对应关系
+            int count = actionRoleFunService.selectRoleFun(arf);
 			// 判断是否有子类
 			List<ActionFunction> list = tmp.getActionFunctionlist();
 			if (list != null && list.size() > 0) {
@@ -366,8 +365,7 @@ public class ActionRoleController extends BaseController{
             ActionRolefun arf = new ActionRolefun();
             arf.setFunId(function.getParentFun());
             arf.setRoleId(roleId);
-			//TODO
-            int count = 0;//actionRoleFunService.selectRoleFun(arf);
+            int count = actionRoleFunService.selectRoleFun(arf);
 			if (count == 0) {
 				//ActionFunction func = actionFunctionService.FunctionEdit(parentid);
 				ActionRolefun fun = new ActionRolefun();

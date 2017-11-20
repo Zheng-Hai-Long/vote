@@ -259,6 +259,12 @@
       <version>2.3</version>
       <classifier>jdk15</classifier>
     </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
   </dependencies>
 
 

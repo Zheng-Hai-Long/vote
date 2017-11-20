@@ -11,7 +11,7 @@ public interface ActionRoleFunService {
 	 * 角色权限信息查询
 	 * @return 角色权限总条数
 	 */
-	//public int selectRoleFun(ActionRolefun u);
+	public int selectRoleFun(ActionRolefun u);
 	
 	/**
 	 * 删除权限关联信息

@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-eq../../../uiv="Content-Type" content="text/html; charset=utf-8" />
-<title>美怡管理后台</title>
-<link href="../../../ui/themes/css/login.css" rel="stylesheet" type="text/css" />
+
+<title>管理后台</title>
+<link href="/ui/themes/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 		<div id="login_header">
 			<h1 class="login_logo">
 				<!-- <img src="../../../ui/themes/default/images/login_logo.gif" /> -->
-				<img src="../../../res/images/logo.png" />
+				<img src="/res/images/logo.png" />
 			</h1>
 			<div class="login_headerContent">
 				<div class="navList">
@@ -26,7 +26,7 @@
 		<div id="login_content">
 		
 			<div class="loginForm">
-			<div ><img src="../../../ui/themes/default/images/login_title.png" /></div>
+			<div ><img src="/ui/themes/default/images/login_title.png" /></div>
 				<div>
 				<form action="/adminlogin" method="post"  class="pageForm req../../../uired-validate">
 					<br />
@@ -56,7 +56,7 @@
 				</form>
 				</div>
 			</div>
-			<div class="login_banner"><!-- <img src="../../../ui/themes/default/images/login_banner.jpg"/> --><img src="../../../res/images/1.png" width="630px" height="230px"/></div>
+			<div class="login_banner"><!-- <img src="../../../ui/themes/default/images/login_banner.jpg"/> --><img src="/res/images/1.png" width="630px" height="230px"/></div>
 			<!-- <div class="login_main">
 				<ul class="helpList">
 					<li><a href="#"></a></li>

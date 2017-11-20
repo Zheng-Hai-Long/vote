@@ -13,7 +13,7 @@ public interface ActionUserRoleService {
 	 * 用户角色信息查询
 	 * @return 用户角色总条数
 	 */
-	//public int selectUserRole(ActionUserrole u);
+	public int selectUserRole(ActionUserrole u);
 	
 	/**
 	 * 删除用户角色关联信息

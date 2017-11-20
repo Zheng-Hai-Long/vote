@@ -70,7 +70,7 @@ function resetQuery()
 				<tr target="list_item_id" rel="${bean.id}">
 					<td>
 						<a
-							href="action/actionUserDetail.do?id=${bean.id}"
+							href="action/${bean.id}/actionUserDetail"
 							target="dialog" width="280" height="260" style="color:blue;"
 							rel="show_project" title="管理员详情"  resizable="true" mask="true"
 							maxable="false" drawable="true">${bean.userName }
@@ -92,11 +92,11 @@ function resetQuery()
 				    	</c:if>
 				    </td>
 				    <td>
-				    	<c:if test="${bean.createname==0 }">超管</c:if>
-				    	<c:if test="${bean.createname==1 }">admin</c:if>
+				    	<c:if test="${bean.createName==0 }">超管</c:if>
+				    	<c:if test="${bean.createName==1 }">admin</c:if>
 				    </td>
 				    <td>
-				    	<fmt:formatDate value="${bean.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				    	<fmt:formatDate value="${bean.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				    </td>
 				    <td>
 				    	<%-- <priveliege:enable buttonCode="editActionUser"> --%>

@@ -148,12 +148,12 @@ public class ActionUserController extends BaseController{
      * @param model
      * @return
      */
-    @RequestMapping(value = "/action/actionUserDetail")
-    public String actionUserDetail(ActionUser actionUser, HttpServletRequest req, ModelMap model)
+    @RequestMapping(value = "/action/{id}/actionUserDetail")
+    public String actionUserDetail(@PathVariable("id")Integer id, HttpServletRequest req, ModelMap model)
     {
-        if (actionUser != null && actionUser.getId() != null)
+        if (id != null)
         {
-            ActionUser user = actionUserService.userEdit(actionUser.getId());
+            ActionUser user = actionUserService.userEdit(id);
             model.put("actionUser", user);
         }
         return actionUserDetail;
@@ -348,8 +348,7 @@ public class ActionUserController extends BaseController{
             ActionUserrole aur = new ActionUserrole();
             aur.setUserId(userId);
             aur.setRoleId(tmp.getId());
-			//TODO
-            int count = 0;//actionUserRoleService.selectUserRole(aur);
+            int count = actionUserRoleService.selectUserRole(aur);
 			if (count > 0) {
 				sb.append("<li><a checked=\"true\" tname=\"name\" tvalue=\"").append(tmp.getId()).append("\" >").append(tmp.getRoleName()).append("</a></li>");
 			} else {
