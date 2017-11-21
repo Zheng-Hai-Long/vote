@@ -5,7 +5,7 @@
 <div class="pageContent">
 	<div class="tabs">
 		<div class="tabsContent">
-			<form method="post" action="action/actionUserRole.do" class="pageForm required-validate" onsubmit="kkk(); return iframeCallback(this,navTabAjaxDone);">
+			<form method="post" action="action/actionUserRole" class="pageForm required-validate" onsubmit="kkk(); return iframeCallback(this,navTabAjaxDone);">
 				<input type="hidden" id="userId" name="userId" value="${userId}" />
 				<input id="values" type="hidden" name="values" />
 				<div layoutH="50" style="float:left; display:block; padding-top:5px; margin-bottom:5px; overflow:auto; width:800px; border:solid 1px #CCC; line-height:21px; background:#FFF;">

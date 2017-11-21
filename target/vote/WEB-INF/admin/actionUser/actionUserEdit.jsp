@@ -6,7 +6,7 @@
 document.onkeydown=banBackSpace;
 </script> -->
 <div class="pageContent">
-	<form method="post" action="action/actionUserEdit.do" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone);">
+	<form method="post" action="action/actionUserEdit" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone);">
 	      
 		<input type="hidden" id="actionUser.id" name="id" value="${actionUser.id }" />
 		<div class="pageFormContent" layoutH="57">

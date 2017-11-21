@@ -85,10 +85,10 @@ function resetQuery()
 				    <td>${bean.mobile }</td>
 				    <td>
 				    	<c:if test="${bean.status==100}">
-				    		<a href="action/actionUserStats.do?id=${bean.id}" target="ajaxTodo" rel="actionUserStats"><span style="color:#90EE90;">启用</span></a>
+				    		<a href="action/${bean.id}/actionUserStats" target="ajaxTodo" rel="actionUserStats"><span style="color:#90EE90;">启用</span></a>
 				    	</c:if>
 				    	<c:if test="${bean.status==101}">
-				    		<a href="action/actionUserStats.do?id=${bean.id}" target="ajaxTodo" rel="actionUserStats"><span style="color:red;">禁用</span></a>
+				    		<a href="action/${bean.id}/actionUserStats" target="ajaxTodo" rel="actionUserStats"><span style="color:red;">禁用</span></a>
 				    	</c:if>
 				    </td>
 				    <td>
@@ -100,18 +100,18 @@ function resetQuery()
 				    </td>
 				    <td>
 				    	<%-- <priveliege:enable buttonCode="editActionUser"> --%>
-				    	<a class="btnEdit" href="action/actionUserEditGET.do?id=${bean.id}" target="dialog" rel="editActionUser" title="修改用户"mask="true" maxable="false" resizable="false" drawable="true" width="480" height="245"><span>修改用户</span></a>
+				    	<a class="btnEdit" href="action/${bean.id}/actionUserEditGET" target="dialog" rel="editActionUser" title="修改用户"mask="true" maxable="false" resizable="false" drawable="true" width="480" height="245"><span>修改用户</span></a>
 					 	<%-- </priveliege:enable> --%>
 					    <c:if test="${bean.status==101}">
 					    	<%-- <priveliege:enable buttonCode="actionUserDelete"> --%>
-					    	<a class="btnDel" href="action/actionUserDelete.do?id=${bean.id}" target="ajaxTodo" rel="actionUserDelete" title="删除用户"><span>删除用户</span></a>
+					    	<a class="btnDel" href="action/${bean.id}/actionUserDelete" target="ajaxTodo" rel="actionUserDelete" title="删除用户"><span>删除用户</span></a>
 					    	<%-- </priveliege:enable> --%>
 					    </c:if>
 					    <%-- <priveliege:enable buttonCode="actionUserInit"> --%>
-					    <a class="btnUlogo" href="action/actionUserInit.do?id=${bean.id}" target="ajaxTodo" rel="actionUserInit" title="初始化密码"><span>初始化密码</span></a>
+					    <a class="btnUlogo" href="action/${bean.id}/actionUserInit" target="ajaxTodo" rel="actionUserInit" title="初始化密码"><span>初始化密码</span></a>
 				    	<%-- </priveliege:enable> --%>
 				    	<%-- <priveliege:enable buttonCode="actionUserRole"> --%>
-				    	<a class="btnThaw" href="action/actionUserRole.do?id=${bean.id}" 
+				    	<a class="btnThaw" href="action/${bean.id}/actionUserRole"
 								target="navTab" rel="actionUserRole" title="分配角色">分配角色</a>
 						<%-- </priveliege:enable> --%>
 				    </td>

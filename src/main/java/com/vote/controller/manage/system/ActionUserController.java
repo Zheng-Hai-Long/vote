@@ -208,25 +208,24 @@ public class ActionUserController extends BaseController{
 	 * 用户信息删除
 	 * @param req
 	 * @param resp
-	 * @param model
+	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = "/action/actionUserDelete", method = RequestMethod.POST)
 	@ResponseBody
     //@ActionLog(content = "删除用户")
     public String actionUserDeletePost(HttpServletRequest req, HttpServletResponse resp,
-			ModelMap model){
-		String id = req.getParameter("id");
-		ActionUser user = actionUserService.userEdit(Integer.parseInt(id));
+			@PathVariable("id")Integer id){
+		ActionUser user = actionUserService.userEdit(id);
 		
 		if(user.getCreateName() == 0){
             return JsonUtil.toJSONString(ActionUtil.getAjaxToMap("300", "this admin is superadmin,can`t delete", "", "", "", ""));
 		}
         saveLogDetail("删除用户：" + user.toString());
 		//删除用户信息
-		actionUserService.userDelete(Integer.parseInt(id));
+		actionUserService.userDelete(id);
 		//删除用户角色关联信息
-		actionUserRoleService.userDeleteId(Integer.parseInt(id));
+		actionUserRoleService.userDeleteId(id);
         return JsonUtil.toJSONString(ActionUtil.getAjaxToMap("200", "delete success", "actionUserList", "", "forward", "action/actionUserList"));
 	}
 	
@@ -234,16 +233,15 @@ public class ActionUserController extends BaseController{
 	 * 用户信息 初始化密码
 	 * @param req
 	 * @param resp
-	 * @param model
+	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/action/actionUserInit", method = RequestMethod.POST)
+	@RequestMapping(value = "/action/{id}/actionUserInit", method = RequestMethod.POST)
 	@ResponseBody
     //@ActionLog(content = "初始化密码")
     public String actionUserInitPost(HttpServletRequest req, HttpServletResponse resp,
-			ModelMap model){
-		String id = req.getParameter("id");
-		ActionUser user = actionUserService.userEdit(Integer.parseInt(id));
+			@PathVariable("id")Integer id){
+		ActionUser user = actionUserService.userEdit(id);
 		if(user.getCreateName() == 0){
             return JsonUtil.toJSONString(ActionUtil.getAjaxToMap("300", "this admin is superadmin,can`t reset password!", "", "", "", ""));
 		}
@@ -258,16 +256,15 @@ public class ActionUserController extends BaseController{
 	 * 用户信息 修改状态
 	 * @param req
 	 * @param resp
-	 * @param model
+	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/action/actionUserStats", method = RequestMethod.POST)
+	@RequestMapping(value = "/action/{id}/actionUserStats", method = RequestMethod.POST)
 	@ResponseBody
     //@ActionLog(content = "修改用户状态")
     public String actionUserStats(HttpServletRequest req, HttpServletResponse resp,
-			ModelMap model){
-		String id = req.getParameter("id");
-		ActionUser user = actionUserService.userEdit(Integer.parseInt(id));
+			@PathVariable("id")Integer id){
+		ActionUser user = actionUserService.userEdit(id);
 		if(user.getCreateName() == 0){
             return JsonUtil.toJSONString(ActionUtil.getAjaxToMap("300", "this admin is superadmin,can`t edit", "", "", "", ""));
 		}
@@ -287,18 +284,19 @@ public class ActionUserController extends BaseController{
 	 * 分配角色 保存Post
 	 * @param req
 	 * @param resp
-	 * @param model
+	 * @param userId
+	 * @param values
 	 * @return
 	 */
-	@RequestMapping(value = "/action/actionUserRole", method = RequestMethod.POST)
+	//TODO
+	@RequestMapping(value = "/action/{userId}/{values}/actionUserRole", method = RequestMethod.POST)
 	@ResponseBody
     //@ActionLog(content = "分配角色")
     public String actionUserRolePost(HttpServletRequest req, HttpServletResponse resp,
-			ModelMap model){
-		String userId = req.getParameter("userId");
-		String values = req.getParameter("values");
+			@PathVariable("userId")Integer userId,
+			@PathVariable("values")String values){
 		//首先删除用户角色关联信息
-		actionUserRoleService.userDeleteId(Integer.parseInt(userId));
+		actionUserRoleService.userDeleteId(userId);
 		String[] value = values.split(",");
 		if(value.length>1){
 			return responseFaild("actionUserList", "只能分配一种角色！", "");
@@ -307,7 +305,7 @@ public class ActionUserController extends BaseController{
 			for(String mp : value){
 				ActionUserrole ur = new ActionUserrole();
 				ur.setRoleId(Integer.parseInt(mp));
-				ur.setUserId(Integer.parseInt(userId));
+				ur.setUserId(userId);
 				actionUserRoleService.userRoleAdd(ur);
 			}
 		}
@@ -320,17 +318,16 @@ public class ActionUserController extends BaseController{
 	 * 用户分配角色
 	 * @param req
 	 * @param resp
-	 * @param model
+	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/action/actionUserRole", method = RequestMethod.GET)
+	@RequestMapping(value = "/action/{id}/actionUserRole", method = RequestMethod.GET)
 	public String actionUserRoleGet(HttpServletRequest req,HttpServletResponse resp,
-			ModelMap model){
-		String id = req.getParameter("id");
-		ActionUser user = actionUserService.userEdit(Integer.parseInt(id));
+			@PathVariable("id")Integer id, ModelMap model){
+		ActionUser user = actionUserService.userEdit(id);
 		List<ActionRole> role = actionRoleService.selectRoleList(user.getCreateName());
 		model.put("userId", id);
-		model.put("actionStr", getUserRole(role, 0, new StringBuffer(), Integer.parseInt(id)));
+		model.put("actionStr", getUserRole(role, 0, new StringBuffer(), id));
 		return actionUserRole;
 	}
 	

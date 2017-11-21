@@ -6,7 +6,7 @@
 /* document.onkeydown=banBackSpace; */
 </script>
 <div class="pageContent">
-	<form method="post" action="action/actionUserAdd.do" class="pageForm required-validate" rel="" onsubmit="return iframeCallback(this, dialogAjaxDone);">
+	<form method="post" action="action/actionUserAdd" class="pageForm required-validate" rel="" onsubmit="return iframeCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="57">
 			<div class="unit">
 				<label>账号名:</label>
