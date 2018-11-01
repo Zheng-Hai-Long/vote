@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="css/index.css" />
+		<link type="text/css" rel="stylesheet" href="css/indexPc.css" />
+		<script type="text/javascript" src="js/common/jquery.min.js"></script>
+		<script type="text/javascript" src="js/common/iscroll/iscroll.js"></script>
+		<script type="text/javascript" src="js/common/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="index">
+			<div class="headTop">
+				<div class="fl headText">
+					<!--<p>欢迎来到怡美智能家装</p>-->
+					<img src="img/head_title.jpg" />
+				</div>
+				<div class="fr menu" @click="menuIcn(icn)">
+					<div class="menu_icn">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+			<!--菜单-->
+			<div class="navList" :class="{curr:icn.flag}">
+				<ul>
+					<li><i>+</i>首页</li>
+					<li class="jiLi">|</li>
+					<li><i>+</i>关于</li>
+					<li class="jiLi">|</li>
+					<li><i>+</i>业务</li>
+					<li class="jiLi">|</li>
+					<li><i>+</i>新闻</li>
+					<li class="jiLi">|</li>
+					<li><i>+</i>留言</li>
+				</ul>
+			</div>
+			<!--轮播图-->
+			<div class="banner">
+				<div class="wraper" id="wrapper">
+					<ul id="imgScroll" :style="{ width:width + 'px'}">
+						<li><img src="img/10.jpg"></li>
+					</ul>
+				</div>
+				<ul class="btnUl">
+					<li class="dottyList"></li>
+					<li class="dottyList"></li>
+					<li class="dottyList"></li>
+				</ul>
+			</div>
+			<!--内容-->
+			<div class="index_lump">
+				<ul>
+					<!--<li>
+						<img src="img/3.jpg" />
+						<div class="title">
+							<h2>案例故事</h2>
+							<h3>PROJECT STORY</h3>
+						</div>
+						<a href="#">查看详情</a>
+					</li>-->
+					<li>
+						<img src="img/3.jpg" />
+						<div class="title">
+							<h2>产品展示</h2>
+							<h3>PROJECT STORY</h3>
+						</div>
+						<a href="#">查看详情</a>
+					</li>
+					<li>
+						<img src="img/3.jpg" />
+						<div class="title">
+							<h2>资质证件</h2>
+							<h3>PROJECT STORY</h3>
+						</div>
+						<a href="page/aptitude.html">查看详情</a>
+					</li>
+					<!--<div class="">
+						<ul>-->
+							<li>
+								<img src="img/3.jpg" />
+								<div class="title">
+									<h2>3D展示</h2>
+									<h3>PROJECT STORY</h3>
+								</div>
+								<a href="#">查看详情</a>
+							</li>
+							<li>
+								<img src="img/3.jpg" />
+								<div class="title">
+									<h2>留言</h2>
+									<h3>PROJECT STORY</h3>
+								</div>
+								<a href="#">查看详情</a>
+							</li>
+							<div style="clear: both;"></div>
+						<!--</ul>
+					</div>-->
+					<div style="clear: both;"></div>
+				</ul>
+			</div>
+			<div class="footer clearfix">
+				<p>美怡居智能环保整装 江苏欣昇霸业装饰材料有限公司</p>
+				<p>公司地址：南京市栖霞区仙林大道东端与镇江市宝华镇交汇处</p>
+				<p>生产地址：江苏省宝华镇美亚路21号</p>
+				<p>全国服务热线：025-68665333</p>
+				<p>官方网址：www.meiyiju88.com</p>
+				<p>苏ICP备16049945号</p>
+				<p>网站支持</p>
+				<div class="threeIcn">
+					<a href="javascript:;"><img src="img/index_icon2_03.png" alt=""></a>
+					<a href="javascript:;"><img src="img/index_icon2_05.png" alt=""></a>
+					<a href="javascript:;"><img src="img/index_icon2_07.png" alt=""></a>
+					<a href="javascript:;"><img src="img/index_icon2_09.png" alt=""></a>
+				</div>
+			</div>
+			<div class="foot">
+				<div align="center" style="padding-top:20px"> <img src="img/foot.jpg" width="1000px" height="92px" alt="logo"> </div>
+				<div class="wide">
+					<p>美怡居智能环保整装　　江苏欣昇霸业装饰材料有限公司</p>
+					<p>生产地址：江苏省宝华镇美亚路21号</p>
+					<p>公司地址：南京市栖霞区仙林大道东端与镇江市宝华镇交汇处</p>
+					<p>全国服务热线： <strong>025-68665333</strong></p>
+					<p>官方网址：<strong>www.meiyiju88.com</strong>　　</p>
+					<p>
+						<a href="http://www.miitbeian.gov.cn" target="_blank">苏ICP备16049945号</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/index.js"></script>
+	</body>
+
+</html>
